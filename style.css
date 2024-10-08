@@ -1,0 +1,135 @@
+/* General body and layout styling */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0b0c10; /* Dark black-blue background */
+    color: #f5f5f5; /* Light font */
+  }
+  
+  /* Header and search form styling */
+  header {
+    background-color: #1f2833; /* Dark blue header */
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Comic-style shadow */
+  }
+  
+  #form {
+    display: flex;
+    justify-content: center;
+  }
+  
+  #search {
+    width: 350px;
+    padding: 12px;
+    border-radius: 25px;
+    border: 2px solid #bb0a1e; /* Blood red border */
+    background-color: #1c1c1c;
+    color: #f5f5f5;
+    outline: none;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  #search::placeholder {
+    color: #7f8c8d;
+    text-transform: uppercase;
+  }
+  
+  /* Main content styling */
+  #main {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+  
+  /* Movie card styling */
+  .movie {
+    background-color: #1b1b2f; /* Dark blue card background */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Deeper shadow for drama */
+    width: 320px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    height: 550px; /* Slightly smaller height */
+  }
+  
+  .movie:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 20px rgba(187, 10, 30, 0.6); /* Blood red glow on hover */
+  }
+  
+  /* Movie image styling */
+  .movie img {
+    width: 100%;
+    height: 400px; /* Reduced height for smaller card */
+    object-fit: cover;
+    border-bottom: 3px solid #bb0a1e; /* Blood red border */
+    display: block;
+  }
+  
+  /* Movie info section */
+  .movie-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #0b0c10; /* Extra dark */
+    border-top: 3px solid #bb0a1e;
+  }
+  
+  .movie-info h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #bb0a1e; /* Blood red title */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Bold, shadowed text */
+  }
+  
+  .movie-info .green {
+    color: #45a29e; /* Cyan-green contrast */
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Movie overview section */
+  .overview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+    color: #f5f5f5;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Smooth fade-in effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .movie:hover .overview {
+    opacity: 1; /* Overview becomes visible on hover */
+  }
+  
+  .overview h3 {
+    margin-top: 0;
+    color: #bb0a1e; /* Consistent blood red for heading */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .overview p {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 85%;
+  }
+  
