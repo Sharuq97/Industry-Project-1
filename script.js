@@ -12,13 +12,35 @@ const paginationContainer = document.getElementById('pagination');
 // Load movies when the page initializes
 loadMovies();
 
+// Event listener for the search form
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const searchTerm = search.value.trim();
+
+  if (searchTerm) {
+    currentPage = 1; // Reset to the first page
+    const searchUrl = `${SEARCH_API}${searchTerm}&page=${currentPage}`;
+    await loadMovies(searchUrl);
+    search.value = ''; // Clear the search input
+  }
+});
+
 // Function to fetch and load movies
 async function loadMovies(url = `${API_URL}&page=${currentPage}`) {
-  const { results, total_pages } = await fetchMovies(url);
-  totalPages = total_pages;
+  try {
+    const { results, total_pages } = await fetchMovies(url);
+    totalPages = total_pages;
 
-  renderMovies(results);
-  renderPagination();
+    if (results.length === 0) {
+      main.innerHTML = '<h2 class="no-results">No results found.</h2>';
+    } else {
+      renderMovies(results);
+      renderPagination();
+    }
+  } catch (error) {
+    main.innerHTML = '<h2 class="error">Failed to fetch movies. Please try again later.</h2>';
+    console.error('Error fetching movies:', error);
+  }
 }
 
 // Render movie cards to the DOM
