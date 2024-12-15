@@ -1,65 +1,80 @@
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=e025df0065a88d5b3d14e60cdbe9e17d&page=1'
-const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
-const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=e025df0065a88d5b3d14e60cdbe9e17d&query="'
+import { fetchMovies, API_URL, SEARCH_API } from './data.js';
 
-const main = document.getElementById('main')
-const form = document.getElementById('form')
-const search = document.getElementById('search')
+let currentPage = 1;
+let totalPages = 1;
 
-//Get initial films
-getMovies(API_URL)
+// DOM Elements
+const main = document.getElementById('main');
+const form = document.getElementById('form');
+const search = document.getElementById('search');
+const paginationContainer = document.getElementById('pagination');
 
-async function getMovies(url) {
-    const res = await fetch(url)
-    const data = await res.json()
+// Load movies when the page initializes
+loadMovies();
 
-    showMovies (data.results)
+// Function to fetch and load movies
+async function loadMovies(url = `${API_URL}&page=${currentPage}`) {
+  const { results, total_pages } = await fetchMovies(url);
+  totalPages = total_pages;
+
+  renderMovies(results);
+  renderPagination();
 }
 
-function showMovies(movies) {
-    main .innerHTML = ''
+// Render movie cards to the DOM
+function renderMovies(movies) {
+  main.innerHTML = '';
 
-    movies.forEach((movie) => {
-        const { title, poster_path, vote_average, overview } = movie
+  movies.forEach(movie => {
+    const { title, poster_path, vote_average, overview, id } = movie;
+    const formattedRating = vote_average.toFixed(1);
 
-        const movieEl = document.createElement('div')
-        movieEl.classList.add('movie')
+    const movieEl = document.createElement('div');
+    movieEl.classList.add('movie');
+    movieEl.innerHTML = `
+      <a href="https://www.themoviedb.org/movie/${id}" target="_blank">
+        <img src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}">
+        <div class="movie-info">${formattedRating}</div>
+        <div class="overview">${overview || "No overview available"}</div>
+      </a>
+    `;
 
-        movieEl.innerHTML = `
-          <img src="${IMG_PATH + poster_path}" alt="${title}">
-          <div class="movie-info">
-         <h3>${title}</h3>
-         <span class="${getClassByRate(vote_average)}">${vote_average}</span>
-          </div>
-          <div class="overview">
-         <h3>Overview</h3>
-         ${overview}
-        </div>
-        `
-        main.appendChild(movieEl)
-    })
+    main.appendChild(movieEl);
+  });
 }
 
-function getClassByRate(vote) {
-    if(vote >= 8) {
-        return 'green'
-    } else if (vote >= 5) {
-        return 'yellow'
-    } else {
-        return 'red'
-    }
+// Render the pagination bar with <<, numbers, and >>
+function renderPagination() {
+  paginationContainer.innerHTML = '';
+
+  const createPageButton = (label, page, isActive = false) => {
+    const btn = document.createElement('button');
+    btn.textContent = label;
+    btn.classList.add('page-btn');
+    if (isActive) btn.classList.add('active');
+
+    btn.addEventListener('click', () => {
+      currentPage = page;
+      loadMovies();
+    });
+
+    paginationContainer.appendChild(btn);
+  };
+
+  // Render the `<<` button
+  if (currentPage > 1) {
+    createPageButton('<<', 1);
+  }
+
+  const visiblePages = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
+  let endPage = Math.min(totalPages, startPage + visiblePages - 1);
+
+  for (let i = startPage; i <= endPage; i++) {
+    createPageButton(i, i, i === currentPage);
+  }
+
+  if (currentPage < totalPages) {
+    createPageButton('>>', totalPages);
+  }
 }
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault()
-
-    const searchTerm = search.ariaValue
-
-    if(searchTerm && searchTerm !== ''){
-        getMovies(SEARCH_API + searchTerm)
-
-        search.value = ''
-    } else {
-        window.location.reload()
-    }
-})

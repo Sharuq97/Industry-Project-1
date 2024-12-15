@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css"/>
-  <title>FilmRockers</title>
+  <title>FilmRockers - Explore Movies with TMDB</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header Section with Search -->
   <header>
     <form id="form">
-      <input type="text" id="search"
-      class="search" placeholder="Search">
+      <input type="text" id="search" class="search" placeholder="Search for movies...">
     </form>
   </header>
 
+  <!-- Main content section where movies will dynamically render -->
   <main id="main"></main>
 
-  <script src="script.js"></script>
+  <!-- Pagination Controls -->
+  <div class="pagination" id="pagination"></div>
+
+  <!-- Link to Script -->
+  <script src="script.js" type="module"></script>
 </body>
 </html>
