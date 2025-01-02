@@ -201,7 +201,7 @@ main {
   background-color: #1f2833;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  color: #000000;
+  color: #b0abab;
 }
 
 #watchlist-section h2 {
@@ -224,7 +224,7 @@ main {
 }
 
 #watchlist-table td {
-  background-color: #1c1c1c;
+  background-color: #001b4b;
 }
 
 .add-movie-form {
@@ -238,8 +238,8 @@ main {
   padding: 6px 12px;
   border-radius: 5px;
   border: 2px solid #56CCF2;
-  background-color: #1c1c1c;
-  color: #f5f5f5;
+  background-color: #000000;
+  color: #ffffff;
   width: 200px;
   font-size: 14px;
 }
@@ -280,7 +280,7 @@ main {
 /* Edit Button */
 .edit-btn {
   padding: 6px 12px;
-  background-color: #56CCF2; /* Blue */
+  background-color: #023141; /* Blue */
   color: white;
   border: none;
   border-radius: 5px;
@@ -288,6 +288,7 @@ main {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-right: 10px;
+  box-shadow:#def4fc;
 }
 
 
@@ -301,9 +302,10 @@ main {
 
 /* Edit Button - Blue */
 .edit-btn {
-  background-color: #56CCF2; /* Blue */
+  background-color: #0089b7; /* Blue */
 }
 
 .edit-btn:hover {
-  background-color: #2e8cf0; /* Darker blue on hover */
+  background-color: #000f1e; /* Darker blue on hover */
 }
+ 
