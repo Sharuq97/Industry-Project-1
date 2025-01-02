@@ -290,15 +290,20 @@ main {
   margin-right: 10px;
 }
 
-.edit-btn:hover {
-  background-color: #2e8cf0; /* Darker blue on hover */
-}
 
-
-.update-btn:hover {
+.update-btn:hover, .edit-btn:hover {
   background-color: #6c32a1; /* Darker purple on hover */
 }
 
 .delete-btn:hover {
   background-color: #d9534f; /* Red for delete */
+}
+
+/* Edit Button - Blue */
+.edit-btn {
+  background-color: #56CCF2; /* Blue */
+}
+
+.edit-btn:hover {
+  background-color: #2e8cf0; /* Darker blue on hover */
 }
