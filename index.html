@@ -24,6 +24,32 @@
   <!-- Pagination Controls -->
   <div class="pagination" id="pagination"></div>
 
+  <!-- My Watchlist Section -->
+<section id="watchlist-section">
+  <h2>My Watchlist</h2>
+  
+  <!-- Watchlist Table -->
+  <table id="watchlist-table">
+    <tbody>
+      <!-- Watchlist items will be dynamically populated here -->
+    </tbody>
+  </table>
+
+  <!-- Add Movie Form -->
+  <form id="add-movie-form" class="add-movie-form">
+    <input type="text" id="movie-title" placeholder="Movie Title" required>
+
+    <button type="submit" class="add-btn">Add to Watchlist</button>
+  </form>
+</section>
+
+<!-- Update and Delete Action Buttons (hidden by default) -->
+<div id="action-buttons" style="display: none;">
+  <button id="update-btn" class="update-btn">Update</button>
+  <button id="delete-btn" class="delete-btn">Delete</button>
+</div>
+
+
   <!-- Link to Script -->
   <script src="script.js" type="module"></script>
 </body>

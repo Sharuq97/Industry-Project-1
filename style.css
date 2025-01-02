@@ -192,3 +192,113 @@ main {
     width: 80%;
   }
 }
+
+
+/* My Watchlist Section */
+#watchlist-section {
+  padding: 20px;
+  margin-top: 40px;
+  background-color: #1f2833;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  color: #f5f5f5;
+}
+
+#watchlist-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #56CCF2;
+  text-align: center;
+}
+
+#watchlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#watchlist-table th, #watchlist-table td {
+  padding: 8px 12px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+#watchlist-table td {
+  background-color: #1c1c1c;
+}
+
+.add-movie-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add-movie-form input {
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: 2px solid #56CCF2;
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+  width: 200px;
+  font-size: 14px;
+}
+
+.add-btn {
+  padding: 6px 12px;
+  background-color: #2F80ED;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #141018; /* Darker purple on hover */
+}
+
+/* Update and Delete Buttons */
+#action-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.update-btn, .delete-btn {
+  padding: 6px 12px;
+  background-color: #9B51E0; /* Purple */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 0 10px;
+}
+
+/* Edit Button */
+.edit-btn {
+  padding: 6px 12px;
+  background-color: #56CCF2; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.edit-btn:hover {
+  background-color: #2e8cf0; /* Darker blue on hover */
+}
+
+
+.update-btn:hover {
+  background-color: #6c32a1; /* Darker purple on hover */
+}
+
+.delete-btn:hover {
+  background-color: #d9534f; /* Red for delete */
+}

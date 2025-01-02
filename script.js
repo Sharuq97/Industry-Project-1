@@ -9,6 +9,17 @@ const form = document.getElementById('form');
 const search = document.getElementById('search');
 const paginationContainer = document.getElementById('pagination');
 
+// Watchlist Section DOM Elements
+const watchlistTable = document.getElementById('watchlist-table');
+const addMovieForm = document.getElementById('add-movie-form');
+const movieTitleInput = document.getElementById('movie-title');
+const actionButtons = document.getElementById('action-buttons');
+const updateBtn = document.getElementById('update-btn');
+const deleteBtn = document.getElementById('delete-btn');
+
+// Track current movie to be updated or deleted
+let currentMovieIndex = -1;
+
 // Load movies when the page initializes
 loadMovies();
 
@@ -100,3 +111,82 @@ function renderPagination() {
     createPageButton('>>', totalPages);
   }
 }
+
+// Load movies from localStorage for Watchlist
+function loadWatchlist() {
+  const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+  watchlistTable.innerHTML = ''; // Clear the table
+  watchlist.forEach((movie, index) => {
+    const row = document.createElement('tr');
+    row.dataset.index = index;
+    row.innerHTML = `
+      <td>${movie.title}</td>
+      <td>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </td>
+    `;
+    watchlistTable.appendChild(row);
+  });
+}
+
+// Save watchlist to localStorage
+function saveWatchlist(watchlist) {
+  localStorage.setItem('watchlist', JSON.stringify(watchlist));
+}
+
+// Add movie to watchlist
+addMovieForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const title = movieTitleInput.value.trim();
+
+  if (title) {
+    const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+    watchlist.push({ title });
+    saveWatchlist(watchlist);
+    movieTitleInput.value = ''; // Clear input
+    loadWatchlist(); // Reload watchlist table
+  }
+});
+
+// Edit movie in watchlist
+watchlistTable.addEventListener('click', (e) => {
+  if (e.target.classList.contains('edit-btn')) {
+    const row = e.target.closest('tr');
+    currentMovieIndex = row.dataset.index; // Store index for updating
+    const movie = JSON.parse(localStorage.getItem('watchlist'))[currentMovieIndex];
+    movieTitleInput.value = movie.title;
+    actionButtons.style.display = 'block'; // Show action buttons
+  }
+});
+
+// Update movie title in watchlist
+updateBtn.addEventListener('click', () => {
+  const newTitle = movieTitleInput.value.trim();
+
+  if (newTitle && currentMovieIndex !== -1) {
+    const watchlist = JSON.parse(localStorage.getItem('watchlist'));
+    watchlist[currentMovieIndex].title = newTitle; // Update movie title
+    saveWatchlist(watchlist);
+    movieTitleInput.value = ''; // Clear input
+    loadWatchlist(); // Reload watchlist table
+    actionButtons.style.display = 'none'; // Hide action buttons
+    currentMovieIndex = -1; // Reset index
+  }
+});
+
+// Delete movie from watchlist
+watchlistTable.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-btn')) {
+    const row = e.target.closest('tr');
+    const index = row.dataset.index;
+
+    const watchlist = JSON.parse(localStorage.getItem('watchlist'));
+    watchlist.splice(index, 1); // Remove movie
+    saveWatchlist(watchlist);
+    loadWatchlist(); // Reload watchlist table
+  }
+});
+
+// Initialize the watchlist on page load
+loadWatchlist();
