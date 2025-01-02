@@ -77,7 +77,7 @@ header {
 
 .search-btn:hover, .search:hover {
   background-color: #141018; /* Purple on hover */
-  transform: scale(1.1); /* Slight scale effect */
+  transform: scale(1.005); /* Slight scale effect */
 }
 
 /* Movie Cards */
@@ -201,7 +201,7 @@ main {
   background-color: #1f2833;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-  color: #f5f5f5;
+  color: #000000;
 }
 
 #watchlist-section h2 {
